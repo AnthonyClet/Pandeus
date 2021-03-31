@@ -1,19 +1,64 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
+<head>
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" value="CLET Anthony (Tchapz)">
+    <meta name="title" value="Site de Pandeüs e-sport">
+    <meta name="keywords" value="Pandeüs, e-sport, compétition, line-up, tournois, showmatch, réseaux, club ">
+    <link rel="stylesheet" href="{{ asset('css/base.css') }}">
+    <link rel="stylesheet" href="{% block style %}{% endblock style %}">
+    <title>{% block title %}{% endblock title %}</title>
+
+</head>
+
+<header>
+
+    <div>
+        <div>
+            <div>
+                <img src="{{ asset('images/banniere_noir.png') }}" alt="logo">
+            </div>
+        </div>
+
+        <div>
+            <div>
+                <button>Inscription</button>
+                <button>Login</button>
+                <button>Logout <img class="logout" src="{{ asset('images/logout.png') }}"
+                                                                  alt="logout"></button>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="{{ path('home_page') }}">Acceuil</a></li>
+                    <li><a href="">Events</a></li>
+                    <li><a href="">Line-up</a></li>
+                    <li><a href="">Aide</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+
+</header>
+
+<body>
+
+    {% block main %}
+
+    {% endblock main %}
+
+</body>
+
+<footer>
+
+    {% block footer %}
+
+    {% endblock footer %}
+
+</footer>
+
 </html>
