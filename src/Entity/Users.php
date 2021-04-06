@@ -52,7 +52,7 @@ class Users
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $role;
+    private $role = [];
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="users")
@@ -146,12 +146,15 @@ class Users
         return $this;
     }
 
-    public function getRole(): ?string
+    public function getRole(): array
     {
-        return $this->role;
+        $role = $this->role;
+        $role[] = 'ROLE_USER';
+
+        return array_unique($role);
     }
 
-    public function setRole(string $role): self
+    public function setRole(array $role): self
     {
         $this->role = $role;
 

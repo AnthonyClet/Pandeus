@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block style %}{{ asset('css/edit_admin.css') }}{% endblock style %}
+
+{% block title %} Edit admin {% endblock title %}
+
+{% block main %}
+
+    <h1 class="title">Modification de l'admin : {{ admin.name }}</h1>
+
+    {{ form_start(adminFormView , {'attr': {'class': 'form_admin'}}) }}
+
+        <div class="form_name">
+            {{ form_label(adminFormView.name) }}
+            {{ form_widget(adminFormView.name) }}
+        </div>
+        <div class="form_email">
+            {{ form_label(adminFormView.email) }}
+            {{ form_widget(adminFormView.email) }}
+        </div>
+        <div class="form_role">
+            {{ form_label(adminFormView.role) }}
+            {{ form_widget(adminFormView.role) }}
+        </div>
+        <div class="form_createdAt">
+            {{ form_label(adminFormView.createdAt) }}
+            {{ form_widget(adminFormView.createdAt) }}
+        </div>
+        <div class="button">
+            {{ form_widget(adminFormView.submit) }}
+        </div>
+
+    {{ form_end(adminFormView) }}
+    
+{% endblock main %}

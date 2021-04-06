@@ -1,18 +1,70 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
 }
 
 header {
-    background: linear-gradient(rgba(60, 60, 60, 1), rgba(0, 0, 0, 0));
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background: linear-gradient(rgba(55, 55, 55, 1), rgba(0, 0, 0, 0));
 }
 
 .logo_header {
-    width: 250px;
+    width: 200px;
     height: auto;
+    padding: 20px;
+}
+
+/********* NAV *********/
+
+nav{
+    width: 45%;
+    margin-top: 40px;
+    margin-right: 40px;
+}
+
+.block-link{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 75%;
+}
+
+.block-link li{
+    list-style-type: none;
+}
+
+.block-link li a{
+    text-decoration: none;
+}
+
+/********* BUTTON *********/
+
+.block-btn{
+    display: flex;
+    justify-content: flex-end;
+    height: 25%;
+}
+
+.block-btn button{
+    margin-left: 20px;
 }
 
 .logout {
-    height: 20px;
+    height: 15px;
     width: auto;
+}
+
+/********* MESSAGE FLASH SUCCESS *********/
+
+.flash-success{
+    display-role: 3s;
+    width: 100%;
+    background-color: limegreen;
+    text-align: center;
+    padding: 40px;
+    margin-bottom: 40px;
 }

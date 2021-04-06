@@ -6,11 +6,14 @@ use App\Repository\AdminsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=AdminsRepository::class)
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
-class Admins
+class Admins implements UserInterface
 {
     /**
      * @ORM\Id
@@ -35,9 +38,9 @@ class Admins
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="json")
      */
-    private $role;
+    private $role = [];
 
     /**
      * @ORM\Column(type="datetime")
@@ -71,6 +74,7 @@ class Admins
         return $this;
     }
 
+
     public function getEmail(): ?string
     {
         return $this->email;
@@ -83,6 +87,17 @@ class Admins
         return $this;
     }
 
+    /**
+     * @see UserInterface
+     */
+    public function getUsername(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     */
     public function getPassword(): ?string
     {
         return $this->password;
@@ -95,12 +110,19 @@ class Admins
         return $this;
     }
 
-    public function getRole(): ?string
+    /**
+     * @return string
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        return $this->role;
+        $role = $this->role;
+        $role[] = 'ROLE_ADMIN';
+
+        return array_unique($role);
     }
 
-    public function setRole(string $role): self
+    public function setRoles(array $role): self
     {
         $this->role = $role;
 
@@ -112,7 +134,7 @@ class Admins
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setCreatedAt(?\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 
@@ -147,5 +169,22 @@ class Admins
         }
 
         return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 }

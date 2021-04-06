@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block style %}{{ asset('css/edit_admin.css') }}{% endblock style %}
+
+{% block title %} Add admin {% endblock title %}
+
+{% block main %}
+
+    <h1 class="title">Ajout d'un admin</h1>
+
+    {{ form_start(addAdminFormView , {'attr': {'class': 'form_admin'}}) }}
+
+        <div class="form_name">
+            {{ form_label(addAdminFormView.name) }}
+            {{ form_widget(addAdminFormView.name) }}
+        </div>
+        <div class="form_email">
+            {{ form_label(addAdminFormView.email) }}
+            {{ form_widget(addAdminFormView.email) }}
+        </div>
+        <div class="form_password">
+            {{ form_label(addAdminFormView.password) }}
+            {{ form_widget(addAdminFormView.password) }}
+        </div>
+        <div class="form_role">
+            {{ form_label(addAdminFormView.role) }}
+            {{ form_widget(addAdminFormView.role) }}
+        </div>
+        <div class="form_createdAt">
+            {{ form_label(addAdminFormView.createdAt) }}
+            {{ form_widget(addAdminFormView.createdAt) }}
+        </div>
+        <div class="button">
+            {{ form_widget(addAdminFormView.submit) }}
+        </div>
+
+    {{ form_end(addAdminFormView) }}
+
+{% endblock main %}

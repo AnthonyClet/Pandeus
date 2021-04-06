@@ -1,0 +1,44 @@
+.title{
+    text-align: center;
+    font-size: 50px;
+    margin-top: 70px;
+}
+
+.add_admin{
+    margin-left: 5%;
+    margin-top: 50px;
+}
+
+.add_admin a{
+    text-decoration: none;
+}
+
+.table_list{
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 50px;
+    border-collapse: collapse;
+    border: 2px solid rgb(0, 173, 173);
+    border-radius: 15px;
+}
+
+.table_list th, tr, td{
+    border: 1px solid black;
+}
+
+.table_list td{
+    padding: 10px;
+    text-align: center;
+}
+
+.table_list th{
+    background-color: darkgrey;
+}
+
+tbody hr{
+    margin: 10px;
+}
+
+tbody a{
+    text-decoration: none;
+}

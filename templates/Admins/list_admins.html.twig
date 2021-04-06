@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block style %}{{ asset('css/list_admins.css') }}{% endblock style %}
+
+{% block title %} Liste admins {% endblock title %}
+
+{% block main %}
+
+    <h1 class="title">Liste des admins</h1>
+
+    <div class="add_admin">
+        <a href="{{ path('add_admin') }}">+ Ajouter un admin +</a>
+    </div>
+
+    <table class="table_list">
+        <thead class="thead">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>E-mail</th>
+                <th>Rôle</th>
+                <th>Created At</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody class="tbody">
+            {% for admin in admins %}
+                <tr>
+                    <td>{{ admin.id }}</td>
+                    <td>{{ admin.name }}</td>
+                    <td>{{ admin.email }}</td>
+                    <td>
+                        {% for role in admin.roles %}
+                            {{ role }}
+                        {% endfor %}
+                    </td>
+                    <td>{{ admin.createdAt ? admin.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td class="block-actions">
+                        <a href="{{ path('edit_admin', {'id': admin.id}) }}">Edit</a>
+                        <hr>
+                        <a href="{{ path('remove_admin', {'id': admin.id}) }}">Remove</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock main %}

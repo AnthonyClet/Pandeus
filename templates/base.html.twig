@@ -8,40 +8,38 @@
     <meta name="author" value="CLET Anthony (Tchapz)">
     <meta name="title" value="Site de Pandeüs e-sport">
     <meta name="keywords" value="Pandeüs, e-sport, compétition, line-up, tournois, showmatch, réseaux, club ">
+
     <link rel="stylesheet" href="{{ asset('css/base.css') }}">
     <link rel="stylesheet" href="{% block style %}{% endblock style %}">
-    <title>{% block title %}{% endblock title %}</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+
+    <title> {% block title %}{% endblock title %} </title>
 
 </head>
 
 <header>
 
     <div>
-        <div>
-            <div>
-                <img src="{{ asset('images/banniere_noir.png') }}" alt="logo">
-            </div>
-        </div>
-
-        <div>
-            <div>
-                <button>Inscription</button>
-                <button>Login</button>
-                <button>Logout <img class="logout" src="{{ asset('images/logout.png') }}"
-                                                                  alt="logout"></button>
-            </div>
-
-            <nav>
-                <ul>
-                    <li><a href="{{ path('home_page') }}">Acceuil</a></li>
-                    <li><a href="">Events</a></li>
-                    <li><a href="">Line-up</a></li>
-                    <li><a href="">Aide</a></li>
-                </ul>
-            </nav>
-        </div>
+        <img class="logo_header" src="{{ asset('images/banniere_noir.png') }}" alt="logo">
     </div>
 
+    <nav class="nav">
+        <div class="block-btn">
+            <button class="btn-inscription">Inscription</button>
+            <button class="btn-login">Login</button>
+            <button class="btn-logout">Logout <img class="logout" src="{{ asset('images/logout.png') }}" alt="logout"></button>
+        </div>
+
+
+        <ul class="block-link">
+            <li><a href="{{ path('home_page') }}">Acceuil</a></li>
+            <li><a href="{{ path('events_page') }}">Events</a></li>
+            <li><a href="{{ path('line_up_page') }}">Line-up</a></li>
+            <li><a href="{{ path('help_page') }}">Aide</a></li>
+        </ul>
+    </nav>
 
 </header>
 

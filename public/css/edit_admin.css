@@ -1,0 +1,52 @@
+.title{
+    text-align: center;
+    font-size: 50px;
+    margin-top: 70px;
+}
+
+.form_admin{
+    width: 50%;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 50px;
+    border: 2px solid rgb(0, 173, 173);
+    border-radius: 15px;
+}
+
+.form_admin div{
+    width: 45%;
+    display: inline-grid;
+    margin: 15px;
+}
+
+.form_admin label{
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+.form_admin input{
+    height: 40px;
+    border: 0.5px solid darkgrey;
+    border-radius: 5px;
+}
+
+.form_admin input:focus{
+    outline-style: none;
+    border: 2px solid rgb(0, 173, 173);
+    border-radius: 5px;
+}
+
+.form_admin .button{
+    width: 30%;
+    height: 40px;
+    margin-left: 35%;
+    margin-right: 35%;
+}
+
+.button button{
+    background-color: darkgrey;
+}
+
+.button button:active{
+    background-color: white;
+}
