@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class AdminType extends AbstractType
 {
@@ -18,7 +19,12 @@ class AdminType extends AbstractType
             ->add('name')
             ->add('email')
             ->add('password')
-            ->add('roles')
+            ->add('roles', ChoiceType::class,[
+                'choices'=>[
+                    'Admin'=>'ROLE_ADMIN'
+                ],
+                'multiple'=> true
+            ])
             ->add('createdAt', DateType::class, [
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',

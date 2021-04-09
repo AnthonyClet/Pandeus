@@ -38,6 +38,9 @@
             <li><a href="{{ path('events_page') }}">Events</a></li>
             <li><a href="{{ path('line_up_page') }}">Line-up</a></li>
             <li><a href="{{ path('help_page') }}">Aide</a></li>
+            {% if is_granted('ROLE_ADMIN') %}
+                <li><a href="{{ path('list_admins') }}">List Admins</a></li>
+            {% endif %}
         </ul>
     </nav>
 
