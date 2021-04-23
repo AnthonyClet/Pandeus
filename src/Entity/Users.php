@@ -6,11 +6,12 @@ use App\Repository\UsersRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UsersRepository::class)
  */
-class Users
+class Users implements UserInterface
 {
     /**
      * @ORM\Id
@@ -50,7 +51,7 @@ class Users
     private $createdAt;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="json")
      */
     private $role = [];
 
@@ -98,18 +99,24 @@ class Users
         return $this;
     }
 
-    public function getEmail(): ?string
+    /**
+     * @see UserInterface
+     */
+    public function getUsername(): ?string
     {
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setUsername(string $email): self
     {
         $this->email = $email;
 
         return $this;
     }
 
+    /**
+     * @see UserInterface
+     */
     public function getPassword(): ?string
     {
         return $this->password;
@@ -146,7 +153,10 @@ class Users
         return $this;
     }
 
-    public function getRole(): array
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
         $role = $this->role;
         $role[] = 'ROLE_USER';
@@ -201,5 +211,22 @@ class Users
         $this->line_up = $line_up;
 
         return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 }

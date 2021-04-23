@@ -10,7 +10,7 @@ class UserController extends AbstractController
 {
 
     /**
-     * @Route("/home", name="home_page")
+     * @Route("/", name="home_page")
      */
     public function homePage()
     {

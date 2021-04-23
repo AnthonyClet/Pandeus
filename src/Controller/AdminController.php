@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Form\AdminType;
 use App\Entity\Admins;
 use App\Repository\AdminsRepository;
 
@@ -18,7 +17,7 @@ class AdminController extends AbstractController
     // Route pour ma home page. //
 
     /**
-     * @Route("/admin/home", name="admin_home_page")
+     * @Route("/admin/", name="admin_home_page")
      */
     public function homePage()
     {

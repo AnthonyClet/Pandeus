@@ -111,7 +111,6 @@ class Admins implements UserInterface
     }
 
     /**
-     * @return string
      * @see UserInterface
      */
     public function getRoles(): array
