@@ -2,126 +2,72 @@
 
 namespace App\Entity;
 
-use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=CommentRepository::class)
+ * Comment
+ *
+ * @ORM\Table(name="comment", indexes={@ORM\Index(name="comment_event0_FK", columns={"id_event"}), @ORM\Index(name="comment_user_FK", columns={"id_user"})})
+ * @ORM\Entity
  */
 class Comment
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=150, nullable=false)
      */
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=3000)
+     * @var string
+     *
+     * @ORM\Column(name="content", type="string", length=3000, nullable=false)
      */
     private $content;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     *
+     * @ORM\Column(name="createdAt", type="date", nullable=false)
      */
-    private $createdAt;
+    private $createdat;
 
     /**
-     * @ORM\Column(type="float")
+     * @var float|null
+     *
+     * @ORM\Column(name="note", type="float", precision=10, scale=0, nullable=true)
      */
     private $note;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Users::class, inversedBy="comment")
-     * @ORM\JoinColumn(nullable=false)
+     * @var \Event
+     *
+     * @ORM\ManyToOne(targetEntity="Event")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_event", referencedColumnName="id")
+     * })
      */
-    private $users;
+    private $idEvent;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Events::class, inversedBy="comments")
+     * @var \Users
+     *
+     * @ORM\ManyToOne(targetEntity="Users")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_user", referencedColumnName="id")
+     * })
      */
-    private $events;
+    private $idUser;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(string $title): self
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    public function getContent(): ?string
-    {
-        return $this->content;
-    }
-
-    public function setContent(string $content): self
-    {
-        $this->content = $content;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getNote(): ?float
-    {
-        return $this->note;
-    }
-
-    public function setNote(float $note): self
-    {
-        $this->note = $note;
-
-        return $this;
-    }
-
-    public function getUsers(): ?Users
-    {
-        return $this->users;
-    }
-
-    public function setUsers(?Users $users): self
-    {
-        $this->users = $users;
-
-        return $this;
-    }
-
-    public function getEvent(): ?Events
-    {
-        return $this->events;
-    }
-
-    public function setEvent(?Events $event): self
-    {
-        $this->event = $event;
-
-        return $this;
-    }
 }

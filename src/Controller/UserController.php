@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\UsersRepository;
 
 class UserController extends AbstractController
 {
@@ -28,9 +29,13 @@ class UserController extends AbstractController
     /**
      * @Route("/line_up", name="line_up_page")
      */
-    public function lineUpPage()
+    public function lineUpPage(UsersRepository $usersRepository)
     {
-        return $this->render('line_up.html.twig');
+        $lineUp = $usersRepository->findAll();
+
+        return $this->render('line_up.html.twig', [
+            'line_up' => $lineUp
+        ]);
     }
 
     /**
